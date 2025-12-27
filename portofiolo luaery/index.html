@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layoutly Atelier - Professional Design Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000000;
+            color: #f5f5dc;
+            overflow-x: hidden;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
+            z-index: -2;
+        }
+
+        .bg-blur-1 {
+            position: fixed;
+            top: 10%;
+            left: 20%;
+            width: 500px;
+            height: 500px;
+            background: #8B0000;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.3;
+            animation: pulse 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .bg-blur-2 {
+            position: fixed;
+            bottom: 10%;
+            right: 20%;
+            width: 400px;
+            height: 400px;
+            background: #4a1414;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.3;
+            animation: pulse 4s ease-in-out infinite 2s;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.1); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 0, 0, 0.2);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(139, 0, 0, 0.6);
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo:hover {
+    transform: scale(1.1) rotate(3deg);
+    box-shadow: 0 0 35px rgba(220, 20, 60, 0.8);
+}
+
+
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: #f5f5dc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #8B0000;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8B0000, transparent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .globe-btn {
+            padding: 0.5rem;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 50%;
+            background: transparent;
+            color: #f5f5dc;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .globe-btn:hover {
+            background: rgba(139, 0, 0, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 6rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: rgba(245, 245, 220, 0.7);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 0 40px rgba(139, 0, 0, 0);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(139, 0, 0, 0.5);
+        }
+
+        /* Image Frame */
+        .image-frame {
+            background: linear-gradient(135deg, #1a0a0f, #000000);
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 2px solid rgba(139, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s;
+        }
+
+        .image-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .image-frame:hover::before {
+            opacity: 1;
+        }
+
+        .image-frame:hover {
+            border-color: rgba(139, 0, 0, 0.8);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(139, 0, 0, 0.3);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #2a1a1f, #1a0a0f);
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: rgba(245, 245, 220, 0.5);
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+
+        /* Collections Section */
+        .collections {
+            padding: 4rem 2rem;
+        }
+
+        .collections-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+       .section-title {
+    text-align: center;
+    font-size: 3.2rem;
+    margin-bottom: 2.5rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    background: linear-gradient(135deg, #8B0000, #DC143C);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+        .tags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    padding-bottom: 1rem;
+    margin-top: 1.5rem;
+        }
+
+
+       .tag {
+    padding: 1rem 1.8rem;
+    background: linear-gradient(135deg, #140a0c, #000000);
+    border: none;
+    background:
+        linear-gradient(#140a0c, #000000) padding-box,
+        linear-gradient(135deg, #8B0000, #DC143C) border-box;
+    border: 1px solid transparent;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+
+        .tag:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(139, 0, 0, 0.45);
+}
+
+.why-me {
+    padding: 4rem 2rem;
+}
+
+.why-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.why-card {
+    background: linear-gradient(135deg, #1a0a0f, #000000);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    border-radius: 2rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.why-card i {
+    font-size: 2.5rem;
+    color: #8B0000;
+    margin-bottom: 1rem;
+}
+
+.why-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+}
+
+.why-card p {
+    color: rgba(245, 245, 220, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.why-card:hover {
+    transform: translateY(-10px);
+    border-color: #DC143C;
+    box-shadow: 0 15px 50px rgba(139, 0, 0, 0.35);
+}
+
+
+
+        /* Works Section */
+        .works {
+            padding: 4rem 2rem;
+        }
+
+        .works-header {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .see-all-btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #1a0a0f, #000000);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 50px;
+            color: #f5f5dc;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .see-all-btn:hover {
+            border-color: #8B0000;
+        }
+
+        .works-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .work-card {
+            background: linear-gradient(135deg, #1a0a0f, #000000);
+            border-radius: 2rem;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            overflow: hidden;
+            transition: all 0.5s;
+        }
+
+        .work-card:hover {
+            border-color: #8B0000;
+            transform: translateY(-10px);
+        }
+
+        .work-image {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #2a1a1f, #1a0a0f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: rgba(139, 0, 0, 0.1);
+            font-weight: bold;
+            position: relative;
+        }
+
+        .time-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+
+        .work-info {
+            padding: 1.5rem;
+        }
+
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .work-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .work-category {
+            font-size: 0.9rem;
+            color: rgba(245, 245, 220, 0.6);
+        }
+
+        .price-value {
+            font-size: 1.5rem;
+            color: #8B0000;
+            font-weight: bold;
+        }
+
+        .price-label {
+            font-size: 0.8rem;
+            color: rgba(245, 245, 220, 0.6);
+        }
+
+        .bid-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            border: none;
+            border-radius: 0.8rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+
+        .bid-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            display: none;
+        }
+
+        .about.show {
+            display: block;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1a0a0f, #000000);
+            padding: 3rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+
+        .language-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 50px;
+            color: #f5f5dc;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            border-color: #8B0000;
+        }
+
+        .about-content {
+            display: none;
+        }
+
+        .about-content.active {
+            display: block;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(245, 245, 220, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: #8B0000;
+            font-weight: 600;
+        }
+
+        .services-title {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #8B0000;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(139, 0, 0, 0.2);
+            border-radius: 1rem;
+        }
+
+        .service-dot {
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* Prices Section */
+        .prices {
+            padding: 4rem 2rem;
+        }
+
+        .prices-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: rgba(245, 245, 220, 0.6);
+            margin-bottom: 3rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .price-card {
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            background: linear-gradient(135deg, #1a0a0f, #000000);
+            transition: all 0.5s;
+        }
+
+        .price-card.featured {
+            background: linear-gradient(135deg, #8B0000, #4a1414);
+            border-color: #DC143C;
+            transform: scale(1.05);
+        }
+
+        .price-card:hover {
+            border-color: #8B0000;
+            transform: translateY(-10px);
+        }
+
+        .price-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .plan-name {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            color: rgba(245, 245, 220, 0.8);
+        }
+
+        .choose-btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.5s;
+            font-size: 1rem;
+        }
+
+        .price-card:not(.featured) .choose-btn {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+        }
+
+        .price-card.featured .choose-btn {
+            background: white;
+            color: #8B0000;
+        }
+
+        .choose-btn:hover {
+            transform: scale(1.02);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 2rem;
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #8B0000, #4a1414);
+            padding: 3rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(220, 20, 60, 0.3);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .icon-circle {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-input {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.8rem;
+            color: #f5f5dc;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-input::placeholder {
+            color: rgba(245, 245, 220, 0.6);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            padding: 1rem;
+            background: white;
+            color: #8B0000;
+            border: none;
+            border-radius: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.5s;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #f5f5dc;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(139, 0, 0, 0.2);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: rgba(245, 245, 220, 0.6);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: rgba(245, 245, 220, 0.6);
+            transition: color 0.3s;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: #8B0000;
+        }
+
+        /* QR Codes Section */
+        .qr-section {
+            max-width: 1400px;
+            margin: 2rem auto 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, #1a0a0f, #000000);
+            border-radius: 2rem;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+            pointer-events: none;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .qr-section.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            max-height: 1000px;
+        }
+
+        .qr-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #f5f5dc;
+            font-weight: 700;
+        }
+
+        .qr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .qr-card {
+            background: linear-gradient(135deg, #2a1a1f, #1a0a0f);
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .qr-card:hover {
+            border-color: #8B0000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(139, 0, 0, 0.3);
+        }
+
+        .qr-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .qr-label {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #f5f5dc;
+            margin-bottom: 0.5rem;
+        }
+
+        .qr-username {
+            font-size: 0.9rem;
+            color: rgba(245, 245, 220, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            nav {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .qr-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="bg-overlay"></div>
+    <div class="bg-blur-1"></div>
+    <div class="bg-blur-2"></div>
+
+    <!-- Header -->
+    <header id="header">
+    <div class="header-container">
+        <div class="logo">
+    <img src="images/e45738a4-c238-4324-8a88-65b5b3a3517a.jpg" alt="Layoutly Atelier">
+</div>
+
+
+        <nav class="center-nav">
+            <a href="#home">Main Page</a>
+            <a onclick="toggleAbout()">About Me</a>
+            <a href="#works">Works</a>
+            <a href="#footer" onclick="showQRCodes()">Contact</a>
+           <button class="globe-btn">
+    <i class="fa-solid fa-globe"></i>
+</button>
+
+        </nav>
+    </div>
+</header>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>
+                    <span class="gradient-text">Layoutly</span><br>
+                    <span class="gradient-text">Atelier</span>
+                </h1>
+                <p class="hero-description">
+                    DISCOVER DIGITAL DESIGN AND COLLECT WORKS. We've got everything you need right here. Our user-friendly interface makes it easy to browse through our extensive collection.
+                </p>
+                <button class="cta-btn" onclick="document.getElementById('works').scrollIntoView({behavior: 'smooth'})">
+                    <span>Learn More</span>
+                    <span>→</span>
+                </button>
+            </div>
+
+            <div class="image-frame">
+                <div class="image-placeholder">
+    <img src="images/e45738a4-c238-4324-8a88-65b5b3a3517a.jpg" alt="My Portfolio">
+</div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (Hidden by default) -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <h2 class="section-title">ABOUT ME</h2>
+            
+            <div class="language-toggle">
+                <button class="lang-btn active" onclick="switchLanguage('uz')">O'zbekcha</button>
+                <button class="lang-btn" onclick="switchLanguage('en')">English</button>
+            </div>
+
+            <!-- Uzbek Content -->
+            <div class="about-content active" id="about-uz">
+                <p class="about-text">
+                    Men <span class="highlight">Layoutly Atelier</span> 2 yillik tajribaga ega, zamonaviy va xaridorlarni jalb qiluvchi loyihalar yaratishda sizga yordam beruvchi grafik dizaynerman.
+                </p>
+                <p class="about-text highlight">
+                 Sizning xohish istaklaringiz asosida siz uchun kerakli loyihani tayyorlab beraman.Albatta siz bilan ishlashdan hursand bo`laman mijozning tanlovi biz uchun katta yutuq!
+                </p>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <div class="service-dot"></div>
+                        <span>Advertising post designs</span>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-dot"></div>
+                        <span>Logo design</span>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-dot"></div>
+                        <span>Presentation design</span>
+                    </div>
+                    
+                </div>
+            </div>
+            </div>
+            <!-- English Content -->
+            <div class="about-content" id="about-en">
+                <p class="about-text">
+                   I am a graphic designer with 2 years of experience, <span class="highlight">Layoutly Atelier</span> crafting modern and engaging designs that help attract customers.
+                </p>
+                <p class="about-text highlight">
+                    I will prepare the project you need based on your wishes and requirements. I will be happy to work with you — your choice is a great achievement for us!
+                </p>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <div class="service-dot"></div>
+                        <span>Advertising post designs</span>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-dot"></div>
+                        <span>Logo design</span>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-dot"></div>
+                        <span>Presentation design</span>
+                    </div>
+                    
+                </div>
+            </div>
+    </section>
+
+    <!-- Collections -->
+    <section class="collections">
+    <div class="collections-container">
+        <h2 class="section-title">My collections</h2>
+        <div class="tags">
+    <div class="tag">LOGO DESIGN</div>
+    <div class="tag">SOCIAL MEDIA DESIGN</div>
+    <div class="tag">PRESENTATIONS</div>
+    <div class="tag">AD POSTERS</div>
+    <div class="tag">CANVA</div>
+    <div class="tag">FIGMA</div>
+</div>
+    </div>
+</section>
+
+
+    <!-- Works Section -->
+    <section id="works" class="works">
+        <div class="works-header">
+            <h2 class="section-title" style="margin-bottom: 0;">LIVE SHOWCASE</h2>
+            <button class="see-all-btn" onclick="alert('See all works coming soon!')">SEE ALL</button>
+        </div>
+
+        <div class="works-grid">
+            <div class="work-card">
+                <div class="work-image">
+                    <div class="time-badge">2h 15m 45s</div>
+                    1
+                </div>
+                <div class="work-info">
+                    <div class="work-header">
+                        <div>
+                            <div class="work-title">BRAND IDENTITY</div>
+                            <div class="work-category">Logo Design</div>
+                        </div>
+                        <div>
+                            <div class="price-value">150$-290$</div>
+                            <div class="price-label">USD</div>
+                        </div>
+                        </div>
+                    <button class="bid-btn">Place a Bid</button>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-image">
+                    <div class="time-badge">1h 30m 20s</div>
+                </div>
+                <div class="work-info">
+                    <div class="work-header">
+                        <div>
+                            <div class="work-title">SOCIAL MEDIA KIT</div>
+                            <div class="work-category">Post Design</div>
+                        </div>
+                        <div>
+                            <div class="price-value">200$-385$</div>
+                            <div class="price-label">USD</div>
+                        </div>
+                        </div>
+                    <button class="bid-btn">Place a Bid</button>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-image">
+                    <div class="time-badge">5h 45m 10s</div>
+                </div>
+                <div class="work-info">
+                    <div class="work-header">
+                        <div>
+                            <div class="work-title">Engaging designs</div>
+                            <div class="work-category">PRESENTATIONS</div>
+                        </div>
+                        <div>
+                            <div class="price-value">560$-790$</div>
+                            <div class="price-label">USD</div>
+                        </div>
+                        </div>
+                    <button class="bid-btn">Place a Bid</button>
+                </div>
+                  </div>
+
+    </section>
+    <section class="why-me">
+    <div class="why-container">
+        <h2 class="section-title">WHY LAYOUTLY ATELIER</h2>
+        <p class="subtitle">What makes me different</p>
+
+        <div class="why-grid">
+            <div class="why-card">
+                <i class="fa-solid fa-award"></i>
+                <h3>2+ Years Experience</h3>
+                <p>Professional design solutions based on real client needs.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Fast Delivery</h3>
+                <p>Quick turnaround without compromising quality.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fa-solid fa-palette"></i>
+                <h3>Creative Approach</h3>
+                <p>Modern, eye-catching designs that stand out.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fa-solid fa-comments"></i>
+                <h3>Clear Communication</h3>
+                <p>Always in touch via Telegram, Instagram or Email.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer id="footer">
+    <div class="footer-container">
+        <p class="footer-text">© 2025 Layoutly Atelier. All rights reserved.</p>
+        <div class="social-links">
+    <a href="https://www.instagram.com/layoutly.atelier" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+
+    <a href="https://www.youtube.com/channel/UCQ2E_pYVNp3h8I5Je6lucRw" target="_blank">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+
+    <a href="https://t.me/layoutly_atelier" target="_blank">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+</div>
+
+    </div>
+</footer>
+
+        <!-- QR Codes Section -->
+        <div class="qr-section" id="qrSection">
+            <h3 class="qr-title">Connect With Me</h3>
+            <div class="qr-grid">
+                <!-- Instagram QR -->
+                <div class="qr-card">
+                    <i class="fa-brands fa-instagram"></i>
+                    <div class="qr-label">Instagram</div>
+                    <div class="qr-username">@layoutly.atelier</div>
+                    <div class="qr-code">
+                        <img src="images/qr-code INSTAGRAM.png" alt="Instagram QR">
+                    </div>
+                </div>
+
+                <!-- YouTube QR -->
+                <div class="qr-card">
+                     <i class="fa-brands fa-youtube"></i>
+                    <div class="qr-label">YouTube</div>
+                    <div class="qr-username">@LayoutlyAtelier</div>
+                    <div class="qr-code">
+                        <img src="images/qr-code youtube.png" alt="YouTube QR">
+                    </div>
+                </div>
+
+                <!-- Telegram QR -->
+                <div class="qr-card">
+                     <i class="fa-brands fa-telegram"></i>
+                    <div class="qr-label">Telegram</div>
+                    <div class="qr-username">@layoutly_atelier</div>
+                    <div class="qr-code">
+                        <img src="images/qr-code.svg" alt="Telegram QR">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Toggle About Section
+        function toggleAbout() {
+            const aboutSection = document.getElementById('about');
+            aboutSection.classList.toggle('show');
+            if (aboutSection.classList.contains('show')) {
+                aboutSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Switch Language
+        function switchLanguage(lang) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Hide all content
+            document.querySelectorAll('.about-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show selected language content
+            document.getElementById('about-' + lang).classList.add('active');
+        }
+
+        // Show QR codes when Contact is clicked
+        function showQRCodes() {
+    const qrSection = document.getElementById('qrSection');
+    qrSection.classList.toggle('show');
+
+    if (qrSection.classList.contains('show')) {
+        setTimeout(() => {
+            qrSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+    }
+}
+
+
+
+        // Form submission
+        function submitForm() {
+            const name = document.getElementById('nameInput').value;
+            const email = document.getElementById('emailInput').value;
+            const message = document.getElementById('messageInput').value;
+            
+            if (name && email && message) {
+                alert('Message sent successfully! Thank you for contacting us.');
+                document.getElementById('nameInput').value = '';
+                document.getElementById('emailInput').value = '';
+                document.getElementById('messageInput').value = '';
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+    </script>
+</body>
+</html>
